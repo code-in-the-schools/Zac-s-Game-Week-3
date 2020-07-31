@@ -4,39 +4,38 @@ var rectSize = 20;
 var rectangX = canvasW/2, rectangY = canvasH/2;
 var rectangxVel = 1, rectangyVel = 0
 var rectangTop = rectangY + rectSize/2, rectangB = rectangY + rectSize/2, rectangL = rectangX + rectSize/2, rectangR = rectangX + rectSize/2;
-var rackettW = 15, rackettL = 60;
+
     
 
 
 function setup() {
 	createCanvas(canvasW, canvasH);
   rectangle = rect(rectangX, rectangY, rectSize, rectSize);
-  rectangxVel = random(-3,6);
-	rectangyVel = random(-3,6);
-  rect(20,200,rackettW,rackettL)
+  rectangxVel = random(-6,6);
+	rectangyVel = random(-6,6);
+  ellipse(mouseX,mouseY,50)
+  rect(50, 50, 100, 100,)
 }
 
-//var [xrot, yrot, t] = [350, 200, 1];
-
 function draw() {
-  background(color(0, 100, 0));
+  background(color(0, 221, 255));
 
   bouncingrectangle();
-
-  rect(20,200,rackettW,rackettL)  
-  rect(canvasW-40,200,rackettW,rackettL) 
-
-  rectangle = rect(rectangX, rectangY, rectSize, rectSize);
-    	// thing you move
-	//fill(0, 255, 0);
-	//ellipse(mouseX, mouseY, 50);
-	
-	// big wheel
-	//(255);
-	//ellipse(350, 250, 100);
+  
+  rectangle = rect(rectangX, rectangY, rectSize, rectSize), fill(255);
+  //upper left rectangle
+  rect(50, 50,70, 70), fill(255);
+  //middle rectangle
+  rect(340, 200, 40, 40), fill(255);
+  //bottom rectangle
+  rect(180, 320, 55,55),fill(255);
+ 
+  ellipse(mouseX,mouseY,50), fill(0);
+  
 }
 
  function bouncingrectangle() {
+   fill(207,181,59),
    rectangX = rectangX + rectangxVel;
    rectangL = rectangX - rectSize/2;
    rectangR = rectangX + rectSize/2;
