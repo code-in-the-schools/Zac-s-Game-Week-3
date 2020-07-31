@@ -1,27 +1,46 @@
+var canvasW = 500, canvasH = 400;
+var rectangle;
+var rectSize = 30;
+var rectangX = canvasW/2, rectangY = canvasH/2;
+var rectangxVel = 1, rectangyVel = 0
+var rectangTop = rectangY + rectSize/2, rectangB = rectangY + rectSize/2, rectangL = rectangX + rectSize/2, rectangR = rectangX + rectSize/2;
+    
+
+
 function setup() {
-	createCanvas(500, 400);
+	createCanvas(canvasW, canvasH);
+  rectangle = rect(rectangX, rectangY, rectSize, rectSize);
+  myBall_xVel = random(-3,3);
+	myBall_yVel = random(-3,3);
 }
 
-var [xrot, yrot, t] = [350, 200, 1];
+//var [xrot, yrot, t] = [350, 200, 1];
 
 function draw() {
-	background(225);
-	
-	// thing you move
-	fill(0, 255, 0);
-	ellipse(mouseX, mouseY, 50);
+  background(color(0, 100, 0));
+
+  bouncingrectangle();
+
+  rectangle = rect(rectangX, rectangY, rectSize, rectSize);
+    	// thing you move
+	//fill(0, 255, 0);
+	//ellipse(mouseX, mouseY, 50);
 	
 	// big wheel
-	fill(255);
-	ellipse(350, 250, 100);
-	
-	// weird moving line
-	fill(0);
-	strokeCap(ROUND);
-	line(mouseX, mouseY, xrot+50, yrot+45);
-	
-	// make it spin
-	xrot += Math.cos((PI/2) * t) * 8;
-	yrot += Math.sin((PI/2) * t) * 8;
-	t += 0.1;
+	//(255);
+	//ellipse(350, 250, 100);
 }
+
+ function bouncingrectangle() {
+  rectangX  = rectangX + rectangxVel;
+	rectangL  = rectangX - rectSize/2;
+	rectangR  = rectangX + rectSize/2;
+	if ( (rectangR > canvasW) || (rectangL < 0) ) {
+		rectangX = -rectangxVel; }
+  
+  rectangY  = rectangY + rectangyVel;
+	rectangTop  = rectangY - rectSize/2;
+	rectangB = rectangY + rectSize/2;
+	if ( (rectangTop > canvasH) || (rectangB < 0) ) {
+		rectangY = -rectangyVel; }
+ }
