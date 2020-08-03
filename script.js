@@ -11,7 +11,7 @@ var paddleLTop = paddleLeftY - paddleH/2,
 paddleLB   = paddleLeftY + paddleH/2, 
 paddleRTop = paddleRightY - paddleH/2, 
 paddleRB   = paddleRightY + paddleH/2,
-paddleLleftside = paddleLeftX - paddleW/2, paddlelrightside= paddleLeftX + paddleW/2, paddleRleftside = paddleRightX - paddleW/2, paddleRrightside = paddleRightX + paddleW/2;
+paddleLleftside = paddleLeftX - paddleW/2, paddleLrightside= paddleLeftX + paddleW/2, paddleRleftside = paddleRightX - paddleW/2, paddleRrightside = paddleRightX + paddleW/2;
 
 function setup() {
 	createCanvas(canvasW, canvasH);
@@ -64,48 +64,6 @@ function movePaddleL() {
 	if(paddleLeftY >= 0 && paddleLeftY + 50 <= 500) paddleLeftY += lyspeed;
 }
 
-//leftPaddle
-function keyPressed() {
-	switch(keyCode) {
-		case 37:
-		case 65:
-			lxspeed = -2;
-			break;
-		case 39:
-		case 68:
-			lxspeed = 2;
-			break;
-		case 38:
-		case 87:
-			lyspeed = -2;
-			break;
-		case 40:
-		case 83:
-			lyspeed = 2;
-			break;
-	}
-}
-//leftPaddle
-function keyReleased() {
-	switch(keyCode) {
-		case 37:
-		case 65:
-			lxspeed = 0;
-			break;
-		case 39:
-		case 68:
-			lxspeed = 0;
-			break;
-		case 38:
-		case 87:
-			lyspeed = 0;
-			break;
-		case 40:
-		case 83:
-			lyspeed = 0;
-			break;
-	}
-}
 //rightPaddle
 function keyPressed() {
 	switch(keyCode) {
@@ -148,6 +106,48 @@ function keyReleased() {
 			break;
 	}
 }
+//leftPaddle
+function keyPressed() {
+	switch(keyCode) {
+		case 37:
+		case 65:
+			lxspeed = -2;
+			break;
+		case 39:
+		case 68:
+			lxspeed = 2;
+			break;
+		case 38:
+		case 87:
+			lyspeed = -2;
+			break;
+		case 40:
+		case 83:
+			lyspeed = 2;
+			break;
+	}
+}
+//leftPaddle
+function keyReleased() {
+	switch(keyCode) {
+		case 37:
+		case 65:
+			lxspeed = 0;
+			break;
+		case 39:
+		case 68:
+			lxspeed = 0;
+			break;
+		case 38:
+		case 87:
+			lyspeed = 0;
+			break;
+		case 40:
+		case 83:
+			lyspeed = 0;
+			break;
+	}
+}
 //some of the code from: /p5js-Game-Starter#script.js
 function bouncePaddles() {
 	if ((rectangB >= paddleRTop) && (rectangTop <= paddleRB)) {
@@ -156,7 +156,7 @@ function bouncePaddles() {
 		}
   }
   	if ((rectangB >= paddleLTop) && (rectangTop <= paddleLB)) {
-	  if (rectangL <= paddlelrightside) {
+	  if (rectangL <= paddleLrightside) {
 		 rectangxVel = -rectangxVel;
 		}
   }
