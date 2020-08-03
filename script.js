@@ -4,10 +4,14 @@ var rectSize = 20;
 var rectangX = canvasW/2, rectangY = canvasH/2;
 var rectangxVel = 1, rectangyVel = 0
 var rectangTop = rectangY + rectSize/2, rectangB = rectangY + rectSize/2, rectangL = rectangX + rectSize/2, rectangR = rectangX + rectSize/2;
-var paddle;
 var paddleW = 15, paddleH = 60;
-var [paddleLeftX, paddleLeftY, lxspeed, lyspeed] = [20, canvasH/2, 0, 0]
-var [paddleRightX, paddleRightY, rxspeed, ryspeed] = [canvasW-40, canvasH/2, 0,0]
+var [paddleLeftX, paddleLeftY, lxspeed, lyspeed] = [20, canvasH/2, 0, 0];
+var [paddleRightX, paddleRightY, rxspeed, ryspeed] = [canvasW-40, canvasH/2, 0,0];
+var paddleLTop = paddleLeftY - paddleH/2, 
+paddleLB   = paddleLeftY + paddleH/2, 
+paddleRTop = paddleRightY - paddleH/2, 
+paddleRB   = paddleRightY + paddleH/2,
+paddleLleftside = paddleLeftX - paddleW/2, paddlelrightside= paddleLeftX + paddleW/2, paddleRleftside = paddleRightX - paddleW/2, paddleRrightside = paddleRightX + paddleW/2;
 
 function setup() {
 	createCanvas(canvasW, canvasH);
@@ -28,16 +32,10 @@ function draw() {
 
   rectangle = rect(rectangX, rectangY, rectSize, rectSize), fill(255);
 
-  if(paddleLeftX >= 0 && paddleLeftX + 50 <= 500) paddleLeftX += lxspeed;
-	if(paddleLeftX >= 0 && paddleLeftX + 50 <= 500) paddleLeftX += lyspeed;
+  movePaddleR();
+  movePaddleL();
 
-  if( paddleRightX >= 0 && paddleRightX + 50 <= 500) paddleRightX += rxspeed;
-	if(paddleRightX >= 0 && paddleRightX + 50 <= 500) paddleRightX += ryspeed;
-
-  keyPressed();
-  keyReleased();
-  keyPressed();
-  keyReleased();
+  bouncePaddles();
 }
 
 function bouncingrectangle() {
@@ -54,6 +52,16 @@ function bouncingrectangle() {
   if ( (rectangB > canvasH) || (rectangTop < 0) ) {
     rectangyVel = -rectangyVel;
   }
+}
+
+function movePaddleR() {
+  if( paddleRightX >= 0 && paddleRightX + 50 <= 500) paddleRightX += rxspeed;
+	if(paddleRightY >= 0 && paddleRightY + 50 <= 500) paddleRightY += ryspeed; 
+}
+
+function movePaddleL() {
+  if(paddleLeftX >= 0 && paddleLeftX + 50 <= 500) paddleLeftX += lxspeed;
+	if(paddleLeftY >= 0 && paddleLeftY + 50 <= 500) paddleLeftY += lyspeed;
 }
 
 //leftPaddle
@@ -140,4 +148,12 @@ function keyReleased() {
 			break;
 	}
 }
- 
+//some of the code from: /p5js-Game-Starter#script.js
+
+function bouncePaddles() {
+	if ((rectangB >= paddleRTop) && (rectangTop <= paddleRB)) {
+	if (rectangR <= paddleRleftside) {
+		 rectangxVel = -rectangxVel;
+		}
+  }
+}
