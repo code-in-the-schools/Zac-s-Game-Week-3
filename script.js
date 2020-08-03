@@ -149,10 +149,14 @@ function keyReleased() {
 	}
 }
 //some of the code from: /p5js-Game-Starter#script.js
-
 function bouncePaddles() {
 	if ((rectangB >= paddleRTop) && (rectangTop <= paddleRB)) {
-	if (rectangR <= paddleRleftside) {
+	if (rectangR >= paddleRleftside) {
+		 rectangxVel = -rectangxVel;
+		}
+  }
+  	if ((rectangB >= paddleLTop) && (rectangTop <= paddleLB)) {
+	  if (rectangL <= paddlelrightside) {
 		 rectangxVel = -rectangxVel;
 		}
   }
