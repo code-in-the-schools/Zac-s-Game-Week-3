@@ -4,7 +4,7 @@ var canvasW = 500, canvasH = 400;
 var rectangle;
 var rectSize = 20;
 var rectangX = canvasW/2, rectangY = canvasH/2;
-var rectangxVel = 1, rectangyVel = 0
+var rectangxVel = 1, rectangyVel = 0;
 var rectangTop = rectangY + rectSize/2, rectangB = rectangY + rectSize/2, rectangL = rectangX + rectSize/2, rectangR = rectangX + rectSize/2;
 
 //paddle variables
@@ -36,16 +36,13 @@ function draw() {
 
   rect(paddleLeftX,paddleLeftY,paddleW,paddleH);
   rect(paddleRightX,paddleRightY,paddleW,paddleH);
-
+  bouncingrectangle();
+  bouncePaddles();
   rectangle = rect(rectangX, rectangY, rectSize, rectSize), fill(255);
   
   //motion of paddles
   movePaddleR();
   movePaddleL();
-  
-  //collision of paddles and ball
-  bouncePaddles();
-  bouncingrectangle();
 
   //scoreboard
   displayScore();
@@ -140,19 +137,20 @@ function keyReleased() {
 }
 
 function updateScore() {
-  if (rectangR >= canvasW) {
-    scoreL++;
-  }
-  if (rectangL < 0) {
-    scoreR++;
-  }
+	if (rectangR >= canvasW) {
+		scoreL++;
+	}
+
+	if (rectangL <= 0) {
+		scoreR++;
+	}
 }
 
 function displayScore() {
-  fill (0,0,0);
-  textSize(20);
-  text("Score:" + scoreL + canvasW/4, rectSize)
-  text("Score:" + scoreR + canvasW*4, rectSize)
-
+	fill(color(0,0,0));
+	textSize(20);
+	text("Score: " + scoreL, canvasW/4, rectSize);
+	text("Score: " + scoreR, canvasW * 0.75, rectSize);
 }
+
 
